@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ValidationError
 
 # Create your models here.
 
@@ -39,7 +40,12 @@ class Transaccion(models.Model):
     amount = models.DecimalField(max_digits=12, decimal_places=2)
     type_trx = models.CharField(max_length=20, choices=TYPE_TRANSACTION)
     date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, default='pendiente')
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.type_trx} - {self.amount}"
+    
+    def validate(self):
+        if self.type_trx == 'transferencia' and not (self.source_account and self.destination_account):
+            raise ValidationError("Transferencias requieren cuenta origen y destino")
