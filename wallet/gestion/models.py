@@ -46,6 +46,6 @@ class Transaccion(models.Model):
     def __str__(self):
         return f"{self.type_trx} - {self.amount}"
     
-    def validate(self):
+    def clean(self):
         if self.type_trx == 'transferencia' and not (self.source_account and self.destination_account):
             raise ValidationError("Transferencias requieren cuenta origen y destino")
