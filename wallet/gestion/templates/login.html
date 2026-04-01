@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block login_css %}
+<link rel="stylesheet" href="{% static 'css/landing.css'  %}">
+{% endblock %}
+
+{% block login_js %}
+<script src="{% static 'js/landing.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row align-items-center min-vh-100">
+    <div class="col-12 col-md-6 device">
+        <img src="{% static 'img/709shots_so.png' %}" alt="" />
+    </div>
+    <div class="col-12 col-md-6 align-self-center slogan">
+        <h1>con <span>alke wallet</span> suma todos los días</h1>
+        <br />
+        <a href="login.html" class="btn-pr">Ingresar</a>
+    </div>
+    <div class="diagonal"></div>
+</div>
+{% endblock %}

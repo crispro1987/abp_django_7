@@ -1,0 +1,212 @@
+:root {
+  --all: #8b4dc2;
+  --primary: #582e85;
+  --secondary: #321a4c;
+  --complement: #FFD700;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(
+    135deg,
+    #8b4dc2,
+    #6f3aa8
+    );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.redC{
+  color:red;
+}
+
+.greenC{
+  color: green;
+}
+
+.btn-pr,
+.btn-pr2{
+  display: inline-block;
+  border-radius: 1em;
+  border:none;
+  color: white;
+  padding: 1em 2em;
+  min-width: 200px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all ease-in .3s;
+}
+
+.btn-pr{
+  background-color: var(--primary);
+}
+
+.btn-pr2:hover{
+  background-color: var(--all);
+}
+
+.btn-pr:hover, .btn-pr2{
+  background-color: var(--secondary);
+}
+
+
+/** MENU **/
+
+.head-carding{
+  display:flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding:1em;
+}
+
+.head-carding img{
+  width:2em;
+}
+
+.head-carding span{
+  color:white;
+}
+
+.carding{
+  background:var(--primary);
+  padding:1.5em;
+  border-radius: .5em .5em 2em 2em;
+  border-top: solid 1em var(--secondary);
+}
+
+.carding h2{
+  color:white;
+  font-size:1.3rem;
+}
+
+.title-saldo{
+  color:var(--all);
+  font-weight: 600;
+}
+
+.current-saldo{
+  font-size: 3rem;
+  color:var(--complement);
+  font-weight: 600;
+}
+
+.btn-home{
+  background-color: var(--secondary);
+  color:white;
+  text-decoration: none;
+  padding:1em;
+  border-radius:2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition: all ease-in .3s;
+}
+
+.btn-home:hover{
+  background-color: var(--primary);
+}
+
+.btn-home i{
+  font-size:1.3rem;
+}
+
+.btn-home p{
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.last h4{
+  font-size: 1.2rem;
+  color:var(--secondary);
+}
+
+/** DEPOSIT **/
+
+label{
+  color:var(--all);
+  font-weight: 600;
+}
+
+.btn-pr3{
+  font-size: 1.2rem;
+  color:var(--secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all ease .3s;
+}
+
+.btn-pr3:hover{
+  color:var(--all);
+  font-weight: 800;
+}
+
+/** SENDMONEY */
+
+#sendMoney h3{
+  color:var(--all)
+}
+
+/* FOOTER */
+footer{
+  padding: 2em;
+  bottom: 0;
+  background-color: var(--secondary);
+  color:white;
+  font-size: .7rem;
+}
+
+footer h4{
+  font-size: 1rem;
+  margin-top: 1em;
+}
+
+footer img{
+  width: 6%;
+}
+
+
+@media(min-width:768px) and (max-width:1023px){
+
+  .btn-home{
+    padding:2em;
+  }
+
+  .btn-home i{
+    font-size:2rem;
+  }
+
+  .btn-home p{
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 1em;
+    width:100%;
+  }
+
+}
+
+@media(min-width:1024px){
+
+  .btn-home{
+    padding: 2em;
+  }
+
+  .btn-home i{
+    font-size: 2rem;
+  }
+
+  .btn-home p{
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 1em;
+    width: 100%;
+  }
+
+}
