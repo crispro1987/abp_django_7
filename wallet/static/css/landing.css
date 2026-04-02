@@ -83,7 +83,7 @@ main{
   background: linear-gradient(
     to bottom,
     rgba(52, 152, 219, 0) 0%,
-    rgba(52, 152, 219, 1) 60%
+    rgba(54, 26, 83, 0.644)  60%
   );
   clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
   transform: translateY(100%);
@@ -117,7 +117,7 @@ main{
     background: linear-gradient(
       to right,
       rgba(52, 152, 219, 0) 0%,
-      rgba(52, 152, 219, 1) 60%
+      rgba(54, 26, 83, 0.644)  60%
     );
     clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
     transform: translateX(100%);
@@ -146,14 +146,14 @@ main{
   }
 
   .diagonal {
-    width: 50%;
+    width: 60% !important;
     height: 100dvh;
     left: auto;
     right: 0;
     background: linear-gradient(
       to right,
       rgba(52, 152, 219, 0) 0%,
-      rgba(52, 152, 219, 1) 60%
+      rgba(54, 26, 83, 0.644)  60%
     );
     clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
     transform: translateX(100%);

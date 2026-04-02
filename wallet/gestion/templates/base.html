@@ -6,10 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> {% block title %}Página de Inicio{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css'  %}">
-    {% block login_css %}{% endblock %}
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css'  %}">
+    {% block login_css %}{% endblock %}
     <script src="https://kit.fontawesome.com/32e9f28142.js" crossorigin="anonymous"></script>
     
     
@@ -21,7 +23,7 @@
         <div class="container-fluid">
 
             <a class="navbar-brand" href="#">
-                <img src="" alt="Bootstrap" width="30" height="24">
+                <img src="{% static 'img/alkewallet-logo.png'  %}" alt="Bootstrap" width="30" height="24">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -63,9 +65,27 @@
     </nav>
     {% endif %}
 
-    <div class="container-fluid vh-100">
+    <div class="container-fluid {% if request.path == '/login' %}vh-100{% endif %}">
         {% block content %}
-        
+        {% if user.is_authenticated %}
+        <div class="row wallet-banner align-items-center">
+            <div class="col-6">
+                <h1 class="mb-2">
+                    Bienvenido <br>
+                    <span class="username">{{ user.username }}</span>
+                </h1>
+                
+            </div>
+
+            <div class="col-6 text-end">
+                <p class="text-light opacity-75">Tu saldo disponible</p>
+                <h2 class="saldo">$100</h2>
+            </div>
+
+        </div>
+
+            
+        {% endif %}
         {% endblock %}
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

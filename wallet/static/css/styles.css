@@ -29,6 +29,27 @@ body {
   color: green;
 }
 
+.wallet-banner {
+  background: linear-gradient(135deg, #582e85, #7b4bb7);
+  border-radius: 20px;
+  padding: 40px;
+  color: white;
+  margin: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.username {
+  font-weight: bold;
+  color: #ffffff;
+  text-transform: capitalize;
+  font-size: 4rem;
+}
+
+.saldo {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
 .btn-pr,
 .btn-pr2{
   display: inline-block;

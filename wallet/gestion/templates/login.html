@@ -15,10 +15,35 @@
     <div class="col-12 col-md-6 device">
         <img src="{% static 'img/709shots_so.png' %}" alt="" />
     </div>
-    <div class="col-12 col-md-6 align-self-center slogan">
-        <h1>con <span>alke wallet</span> suma todos los días</h1>
-        <br />
-        <a href="login.html" class="btn-pr">Ingresar</a>
+    <div class="col-12 col-md-4 align-self-center slogan">
+        <div class="card text-center p-4">
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger mt-4">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    
+                    <div class="mb-3">
+                        {{ field }}
+                    </div>
+                    {% if field.errors %}
+                        <div class="text-danger small">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <button class="btn-pr" type="submit">Ingresar</button>
+            </form>
+            <a href="#">Si no estas registrado, registrese aquí.</a>
+        </div>
     </div>
     <div class="diagonal"></div>
 </div>
