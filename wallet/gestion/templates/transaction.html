@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Transferencia{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h1>Transferencia</h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="mb-3">
+                <label>Cuenta origen</label>
+                {{ form.source_account }}
+            </div>
+
+            <div class="mb-3">
+                <label>Cuenta destino</label>
+                {{ form.destination_account }}
+            </div>
+
+            <div class="mb-3">
+                <label>Monto</label>
+                {{ form.amount }}
+            </div>
+
+            <div class="mb-3">
+                <label>Mensaje</label>
+                {{ form.description }}
+            </div>
+
+            <button type="submit">Transferir</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

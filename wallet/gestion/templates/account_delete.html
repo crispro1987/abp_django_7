@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Cuenta{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h1>Eliminar Cuenta</h1>
+        <p>¿Estás seguro de que deseas eliminar la cuenta {{ object.account_number }} con saldo ${{ object.balance }}?</p>
+
+        {% if object.saldo > 0 %}
+            <p style="color:red;">
+                No puedes eliminar una cuenta con saldo.
+            </p>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+            <a href="{% url 'account_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

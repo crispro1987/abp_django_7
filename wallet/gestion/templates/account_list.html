@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Lista de destinatarios{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h1>Lista de cuentas</h1>
+        <a href="{% url 'account_create' %}">
+            <button class="btn-pr">Crear Cuenta</button>
+        </a>
+        <ul>
+        {% for cuenta in object_list %}
+            <li>
+            {{ cuenta.account_number }} - {{ cuenta.balance }} - {{ cuenta.client }}
+            <a href="{% url 'account_update' cuenta.id %}">Editar</a>
+            <a href="{% url 'account_delete' cuenta.id %}">Eliminar</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

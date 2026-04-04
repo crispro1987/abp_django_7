@@ -39,17 +39,17 @@
                         <a class="nav-link active" aria-current="page" href="{% url 'pagina_inicio' %}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Proyecto</a>
+                        <a class="nav-link" href="{% url 'account_list' %}">Destinatarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tarea</a>
+                        <a class="nav-link" href="{% url 'transaction_create' %}">Transferencia</a>
                     </li>
                     
                 </ul>
                 <div class="d-flex">
                     {% if user.is_authenticated %}
                             <span class="profile">Bienvenido {{ user.username }}</span>
-                            <form action="#" method="post">
+                            <form action="{% url 'logout' %}" method="post">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-danger btn-sm">
                                     Cerrar Sesión
@@ -65,7 +65,24 @@
     </nav>
     {% endif %}
 
+    <!-- mensajes -->
+    {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert 
+                {% if message.tags == 'error' %}alert-danger
+                {% else %}alert-{{ message.tags }}
+                {% endif %}
+                alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <div class="container-fluid {% if request.path == '/login' %}vh-100{% endif %}">
+
         {% block content %}
         {% if user.is_authenticated %}
         <div class="row wallet-banner align-items-center">

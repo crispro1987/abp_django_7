@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if object %}
+        Editar Cuenta
+    {% else %}
+        Crear Cuenta
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<h2>
+    {% if object %}
+        Editar Cuenta
+    {% else %}
+        Crear Cuenta
+    {% endif %}
+</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">Guardar</button>
+</form>
+
+<a href="{% url 'account_list' %}">Volver</a>
+
+{% endblock %}
