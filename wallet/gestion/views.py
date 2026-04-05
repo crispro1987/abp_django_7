@@ -13,7 +13,13 @@ from django.contrib import messages
 
 @login_required
 def home(request):
-    return render(request, 'base.html')
+    try:
+        cuenta = Cuenta.objects.get(client__user=request.user)
+        balance = cuenta.balance
+    except Cuenta.DoesNotExist:
+        balance = 0 
+
+    return render(request, 'base.html', {'balance': balance})
 
 def login_view(request):
     if request.method == 'POST':
@@ -56,28 +62,7 @@ class CuentaUpdateView(UpdateView):
     form_class = CuentaForm
     template_name = 'account.html'
     success_url = reverse_lazy('account_list')
-"""
-class CuentaDeleteView(DeleteView):
-    model = Cuenta
-    template_name = 'account_delete.html'
-    success_url = reverse_lazy('account_list')
 
-    def form_valid(self, form):
-        self.object = self.get_object()
-
-        # ver si la cuenta tiene saldo
-        if self.object.balance > 0:
-            messages.error(self.request, "No es posible eliminar una cuenta con saldo disponible.")
-            return redirect('account_list')
-        
-        # Ver si tiene transacciones hechas
-        if self.object.transacciones_salientes.exists() or self.object.transacciones_entrantes.exists():
-            messages.error(self.request, "No es posible eliminar una cuenta con transacciones realizadas")
-            return redirect('account_list')
-        
-        messages.success(self.request, "Cuenta eliminada correctamente.")
-        return super().form_valid(self,form)
-"""
 
 class CuentaDeleteView(DeleteView):
     model = Cuenta
