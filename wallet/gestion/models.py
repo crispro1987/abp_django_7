@@ -7,7 +7,7 @@ from django.forms import ValidationError
 # El Cliente extiende al usuario
 class Cliente(models.Model):
     #name = models.CharField("Nombre", max_length=200)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cliente')
     phone = models.CharField("Teléfono",max_length=20, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
