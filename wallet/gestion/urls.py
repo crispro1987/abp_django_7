@@ -8,6 +8,6 @@ urlpatterns = [
     path('accountlist/', cuenta_list,name='account_list' ),
     path('create/', cuenta_create, name='account_create'),
     path('edit/<int:pk>/', cuenta_update, name='account_update'),
-    path('delete/<int:pk>/', CuentaDeleteView.as_view(), name='account_delete'),
-    path('transfer/', TransaccionCreateView.as_view(), name='transaction_create')
+    path('delete/<int:pk>/', cuenta_delete, name='account_delete'),
+    path('transfer/', transaccion_create, name='transaction_create')
 ]
