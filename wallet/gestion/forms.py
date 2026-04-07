@@ -20,17 +20,22 @@ class UserForm(forms.Form):
 class CuentaForm(forms.ModelForm):
     class Meta:
         model = Cuenta
-        fields = ['client','account_number','balance']
+        fields = ['account_type','account_number']
         widgets = {
-            'client': forms.Select(attrs={'class': 'form-control'}),
+            'account_type': forms.Select(attrs={'class': 'form-control'}),
             'account_number': forms.TextInput(attrs={'class': 'form-control'}),
-            'balance': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
 class TransaccionForm(forms.ModelForm):
     class Meta:
         model = Transaccion
         fields = ['source_account','destination_account', 'amount', 'description']
+        widgets = {
+            'source_account': forms.Select(attrs={'class': 'form-control'}),
+            'destination_account': forms.Select(attrs={'class': 'form-control'}),
+            'amount': forms.NumberInput(attrs={'class': 'form-control'}),
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
     def clean(self):
         cleaned_data = super().clean()

@@ -9,22 +9,33 @@
 {% endblock %}
 
 {% block content %}
-<h2>
-    {% if object %}
-        Editar Cuenta
-    {% else %}
-        Crear Cuenta
-    {% endif %}
-</h2>
+<div class="row justify-content-center">
+    
+        <div class="col-11 col-md-6 carding text-center mt-5">
+            <h2>
+                {% if object %}
+                    Editar Cuenta
+                {% else %}
+                    Crear Cuenta
+                {% endif %}
+            </h2>
 
-<form method="post">
-    {% csrf_token %}
+            <form method="post">
+                {% csrf_token %}
 
-    {{ form.as_p }}
+                {{ form.as_p }}
 
-    <button type="submit">Guardar</button>
-</form>
+                <button type="submit" class="btn-pr2 w-100">Guardar</button>
+            </form>
 
-<a href="{% url 'account_list' %}">Volver</a>
+            <div class="mt-3">
+              <a href="{% url 'account_list' %}" class="btn-pr3 w-100"><i class="fa-solid fa-arrow-left me-2"></i> Volver</a>
+            </div>
+        </div>
+
+</div>
+
+
+
 
 {% endblock %}

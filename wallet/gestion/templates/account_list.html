@@ -3,20 +3,26 @@
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-6">
+    <div class="col-11 col-md-6 carding text-center mt-5 mb-3">
         <h1>Lista de cuentas</h1>
         <a href="{% url 'account_create' %}">
-            <button class="btn-pr">Crear Cuenta</button>
+            <button class="btn-pr2">Crear Cuenta</button>
         </a>
-        <ul>
-        {% for cuenta in object_list %}
-            <li>
-            {{ cuenta.account_number }} - {{ cuenta.balance }} - {{ cuenta.client }}
-            <a href="{% url 'account_update' cuenta.id %}">Editar</a>
-            <a href="{% url 'account_delete' cuenta.id %}">Eliminar</a>
-            </li>
-        {% endfor %}
-        </ul>
     </div>
 </div>
+{% for cuenta in object_list %}
+<div class="row justify-content-center">
+    <div class="col-6 mb-3">
+        <div class="card p-4">
+            <h2>{{ cuenta.account_number }} <small>{{ cuenta.account_type }}</small></h2>
+            <p>Saldo: ${{ cuenta.balance }}</p>
+            <p>Cliente: {{ cuenta.client }}</p>
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'account_update' cuenta.id %}" class="btn-pr2 me-2">Editar</a>
+                <a href="{% url 'account_delete' cuenta.id %}" class="btn-pr">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

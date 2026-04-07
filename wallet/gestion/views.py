@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import UserForm, CuentaForm, TransaccionForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Cuenta, Transaccion
+from .models import Cliente, Cuenta, Transaccion
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView 
 from django.urls import reverse_lazy
 from django.db import transaction
@@ -13,13 +13,15 @@ from django.contrib import messages
 
 @login_required
 def home(request):
-    try:
-        cuenta = Cuenta.objects.get(client__user=request.user)
-        balance = cuenta.balance
-    except Cuenta.DoesNotExist:
-        balance = 0 
+    cliente, _ = Cliente.objects.get_or_create(user=request.user)
+    cuentas = Cuenta.objects.filter(client=cliente)
 
-    return render(request, 'base.html', {'balance': balance})
+    balance = sum(c.balance for c in cuentas)
+
+    return render(request, 'base.html', {
+        'balance': balance,
+        'cuentas': cuentas
+    })
 
 def login_view(request):
     if request.method == 'POST':
@@ -56,6 +58,11 @@ class CuentaCreateView(CreateView):
     form_class = CuentaForm
     template_name = 'account.html'
     success_url = reverse_lazy('account_list')
+
+    def form_valid(self, form):
+        cliente, created = Cliente.objects.get_or_create(user=self.request.user)
+        form.instance.client = cliente
+        return super().form_valid(form)
 
 class CuentaUpdateView(UpdateView):
     model = Cuenta

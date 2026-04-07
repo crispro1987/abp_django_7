@@ -86,17 +86,28 @@
         {% block content %}
         {% if user.is_authenticated %}
         <div class="row wallet-banner align-items-center">
-            <div class="col-6">
+            <div class="col-4 title-home">
                 <h1 class="mb-2">
-                    Bienvenido <br>
+                    Hola de nuevo <br>
                     <span class="username">{{ user.username }}</span>
                 </h1>
                 
             </div>
 
-            <div class="col-6 text-end">
+            <div class="col-4 text-center">
+                <select id="cuentaSelect" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                    <option disabled selected>Selecciona una cuenta</option>
+                    {% for cuenta in cuentas %}
+                        <option value="{{ cuenta.id }}" data-balance="{{ cuenta.balance }}">
+                            {{ cuenta.account_number }} ({{ cuenta.account_type }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-4 text-end">
                 <p class="text-light opacity-75">Tu saldo disponible</p>
-                <h2 class="saldo">${{ balance }}</h2>
+                <h2 class="saldo" id="saldo">${{ balance }}</h2>
             </div>
 
         </div>
