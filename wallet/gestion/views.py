@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import UserForm, CuentaForm, TransaccionForm
+from .forms import UserForm, CuentaForm, TransaccionForm, RegisterForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Cliente, Cuenta, Transaccion
@@ -17,9 +17,14 @@ def home(request):
 
     balance = sum(c.balance for c in cuentas)
 
+    transacciones =  Transaccion.objects.filter(
+        source_account__client__user=request.user
+    ).select_related('source_account', 'destination_account')
+
     return render(request, 'base.html', {
         'balance': balance,
-        'cuentas': cuentas
+        'cuentas': cuentas,
+        'transacciones': transacciones,
     })
 
 def login_view(request):
@@ -46,6 +51,19 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+
+def register_view(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('pagina_inicio')
+    else:
+        form = RegisterForm()
+
+    return render(request, "register.html",{"form":form})
 
 
 @login_required
